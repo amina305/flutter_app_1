@@ -1,0 +1,130 @@
+import 'package:flutter/material.dart';
+
+class Science extends StatefulWidget {
+  const Science({super.key});
+
+  @override
+  ScienceState createState() => ScienceState();
+}
+
+class ScienceState extends State<Science> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Top bar with time and icons
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  const Text(
+                    "08:45",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const Spacer(),
+                  Image.network(
+                    'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/Sc0iOjd/8TEwL5VK_wFa23qaHiDc_expires_30_days.png',
+                    width: 20,
+                  ),
+                  const SizedBox(width: 5),
+                  Image.network(
+                    'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/Sc0iOjd/XdjzPcfL7X_DG8nmHQ8v_expires_30_days.png',
+                    width: 24,
+                  ),
+                  const SizedBox(width: 5),
+                  Image.network(
+                    'https://storage.googleapis.com/tagjs-prod.appspot.com/v1/Sc0iOjd/74cd_z3W5P0PcsQB1hB__expires_30_days.png',
+                    width: 40,
+                  ),
+                ],
+              ),
+            ),
+
+            const Spacer(),
+
+            // Bouton 1
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFF92D3B0),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Flexible(
+                      child: Text(
+                        'Le cœur et\nle système\ncirculatoire',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Image.network(
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Heart_corazón.svg/1200px-Heart_corazón.svg.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // Bouton 2
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFF92D3B0),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Flexible(
+                      child: Text(
+                        'Les cellules\net l’ADN',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      '🧬',
+                      style: TextStyle(fontSize: 40),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const Spacer(),
+
+            // Navigation bar (home, gallery, user)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  Icon(Icons.home, size: 30, color: Colors.black),
+                  Icon(Icons.image, size: 30, color: Colors.black),
+                  Icon(Icons.person, size: 30, color: Colors.black),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
