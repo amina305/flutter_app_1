@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  cached_network_image: ^3.2.0
+  google_fonts: ^6.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -66,6 +67,25 @@ flutter:
     - assets/image/image1.png
     - assets/music.mp3
     - assets/image/background.png
+    - assets/animation.jpg
+    - assets/Animation.json
+    - assets/avatar.png
+    - assets/cooki.png
+    - assets/cuisine.png
+    - assets/drapaux.png
+    - assets/logo.png
+    - assets/oeufe.png
+    - assets/pancake.png
+    - assets/pasta.png
+    - assets/pates.png
+    - assets/patte.png
+    - assets/salad.png
+    - assets/science.png
+    - assets/soup.png
+    - assets/ss.png
+    - assets/toast.png
+    - assets/yoga.png
+    - assets/animation.json
   # To add assets to your application, add an assets section, like this:
 
   # An image asset can refer to one or more resolution-specific "variants", see

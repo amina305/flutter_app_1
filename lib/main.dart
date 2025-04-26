@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-
-import 'package:flutter/material.dart';// ✅ Assure-toi que le fichier est bien dans "lib/" ou adapte le chemin
-import 'package:flutter/services.dart';
-import 'screen_two.dart';
-import 'package:premier_projet/categorier.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:premier_projet/cuisine.dart';
-
+import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'Categorie.dart'; // Importer la nouvelle page
+import 'Sport.dart';
+import 'Pause.dart';
+import 'Deficuisine.dart';
+import 'Science.dart';
 
 void main() {
-  // Masquer la barre de statut
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
   runApp(const MyApp());
 }
 
@@ -21,253 +16,200 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Votre Application',
       debugShowCheckedModeBanner: false,
-      home: ChallengeCompletedPage(),
+      home: const Profil(),
     );
   }
 }
 
-      //home: RestPage(
-        //onRestEnd: () {
-          //print("Repos terminé !");
-          // Ici, tu peux ajouter une navigation vers une autre page si nécessaire
-        //},
-        //audioPlayer: AudioPlayer(), // Assure-toi d'utiliser un AudioPlayer valide
-      //),
+class Profil extends StatefulWidget {
+  const Profil({super.key});
 
-    //);
-  //}
-//}
+  @override
+  ProfilState createState() => ProfilState();
+}
 
-class ChallengeScreen extends StatelessWidget {
-  const ChallengeScreen({super.key});
+class ProfilState extends State<Profil> {
+  String userName = "Radja";
+  late final TextEditingController _nameController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(text: userName);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: SafeArea(
-        child: SizedBox(
-          height: screenHeight,
-          width: screenWidth,
+        child: SingleChildScrollView(  // Ajoutez ce widget pour rendre l'écran défilable
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const Spacer(),
-              const Text(
-                "Bienvenue dans le \nmonde du challenge!\n",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
+            children: [
+              const SizedBox(height: 40),
 
-              // Image principale
-              SizedBox(
-                height: screenHeight * 0.3,
-                width: screenWidth * 0.8,
-                child: Image.network(
-                  "https://storage.googleapis.com/tagjs-prod.appspot.com/qGoJPkUONC/5zmgz3i0.png",
-                  fit: BoxFit.contain,
+              // Avatar centré en haut
+              Center(
+                child: Image.asset(
+                  'assets/avatar.png', // Vérifie que le fichier existe dans assets/
+                  width: 100,
+                  height: 100,
+                  errorBuilder: (context, error, stackTrace) =>
+                  const Icon(Icons.person, size: 100, color: Colors.grey),
                 ),
               ),
 
+              const SizedBox(height: 50),
+
+              // Ligne contenant le champ de saisie du nom à gauche et le drapeau à droite
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                child: const Text(
-                  "Chaque petit pas te rapproche de\n\nla réussite.Prêt à relever le défi?\n\nC’est à toi de jouer.",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              const Spacer(),
-
-              // ✅ Bouton "Get Started" avec navigation vers ScreenTwo
-              Align(
-                alignment: Alignment.topCenter, // Aligne le bouton en haut du centre
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50), // Marge du haut, ajuste la valeur selon tes besoins
-                  child: SizedBox(
-                    height: 50, // Hauteur réduite du bouton
-                    width: screenWidth * 0.6, // Largeur de 60% de la largeur de l'écran
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const ScreenTwo()), // ✅ Navigation correcte
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: "Votre nom",
+                          border: OutlineInputBorder(),
                         ),
-                      ),
-                      child: const Text(
-                        "Get Started",
-                        style: TextStyle(
-                          fontSize: 16, // Réduit la taille du texte
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            userName = value;
+                          });
+                        },
                       ),
                     ),
-                  ),
+                    const SizedBox(width: 5),
+
+                    // Drapeau avec fond blanc
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 2,
+                            offset: const Offset(0, 1),
+                          ),
+                        ],
+                      ),
+                      padding: const EdgeInsets.all(2),
+                      child: Image.asset(
+                        'assets/drapaux.png',
+                        width: 64,
+                        height: 44,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                        const Icon(Icons.flag, size: 44, color: Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: screenHeight * 0.03), // Ajout d'espace sous le bouton
+
+              const SizedBox(height: 30),
+
+              Text(userName, style: const TextStyle(fontSize: 19, color: Colors.grey)),
+              const SizedBox(height: 5),
+              const Text(
+                "Membre depuis janvier 2025",
+                style: TextStyle(fontSize: 21, color: Colors.grey),
+              ),
+              const SizedBox(height: 20),
+
+              const Text(
+                "Tu es tout proche du but,",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                "ne lâche rien !",
+                style: TextStyle(fontSize: 35),
+              ),
+
+              const SizedBox(height: 30),
+
+              Center(
+                child: _buildImage(
+                  "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/Sc0iOjd/k1d8cxDk3vn_AR1Xg3p0.png",
+                  width: 202,
+                  height: 109,
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // Les 4 images de progression (corrigées)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildLocalImage("assets/salad.png"),
+                  _buildLocalImage("assets/pasta.png"),
+                  _buildLocalImage("assets/salad.png"),
+                  _buildLocalImage("assets/patte.png"),
+                ],
+              ),
+              const SizedBox(height: 30),
+
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Categorie()),
+                  );
+                },
+                icon: const Icon(Icons.arrow_forward),
+                label: const Text("Aller à Catégorie"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                ),
+              ),
+
+              const SizedBox(height: 20), // Ajoute un peu de marge en bas pour éviter l'overflow
             ],
           ),
         ),
       ),
     );
   }
-}
 
-
-=======
-
-import 'package:flutter/material.dart';// ✅ Assure-toi que le fichier est bien dans "lib/" ou adapte le chemin
-import 'package:flutter/services.dart';
-import 'screen_two.dart';
-import 'package:premier_projet/categorier.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:premier_projet/cuisine.dart';
-
-
-void main() {
-  // Masquer la barre de statut
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ChallengeCompletedPage(),
+  // Widget pour afficher une image avec un cache
+  Widget _buildImage(String url, {double width = 91, double height = 91}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 3),
+      child: CachedNetworkImage(
+        imageUrl: url,
+        width: width,
+        height: height,
+        fit: BoxFit.fill,
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) =>
+        const Icon(Icons.error, color: Colors.red),
+      ),
     );
   }
-}
 
-      //home: RestPage(
-        //onRestEnd: () {
-          //print("Repos terminé !");
-          // Ici, tu peux ajouter une navigation vers une autre page si nécessaire
-        //},
-        //audioPlayer: AudioPlayer(), // Assure-toi d'utiliser un AudioPlayer valide
-      //),
-
-    //);
-  //}
-//}
-
-class ChallengeScreen extends StatelessWidget {
-  const ChallengeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      body: SafeArea(
-        child: SizedBox(
-          height: screenHeight,
-          width: screenWidth,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const Spacer(),
-              const Text(
-                "Bienvenue dans le \nmonde du challenge!\n",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-
-              // Image principale
-              SizedBox(
-                height: screenHeight * 0.3,
-                width: screenWidth * 0.8,
-                child: Image.network(
-                  "https://storage.googleapis.com/tagjs-prod.appspot.com/qGoJPkUONC/5zmgz3i0.png",
-                  fit: BoxFit.contain,
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                child: const Text(
-                  "Chaque petit pas te rapproche de\n\nla réussite.Prêt à relever le défi?\n\nC’est à toi de jouer.",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              const Spacer(),
-
-              // ✅ Bouton "Get Started" avec navigation vers ScreenTwo
-              Align(
-                alignment: Alignment.topCenter, // Aligne le bouton en haut du centre
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50), // Marge du haut, ajuste la valeur selon tes besoins
-                  child: SizedBox(
-                    height: 50, // Hauteur réduite du bouton
-                    width: screenWidth * 0.6, // Largeur de 60% de la largeur de l'écran
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const ScreenTwo()), // ✅ Navigation correcte
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: const Text(
-                        "Get Started",
-                        style: TextStyle(
-                          fontSize: 16, // Réduit la taille du texte
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: screenHeight * 0.03), // Ajout d'espace sous le bouton
-            ],
-          ),
-        ),
+  // Widget pour afficher une image locale avec gestion des erreurs
+  Widget _buildLocalImage(String assetPath) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Image.asset(
+        assetPath,
+        width: 85,
+        height: 85,
+        errorBuilder: (context, error, stackTrace) =>
+        const Icon(Icons.broken_image, size: 85, color: Colors.grey),
       ),
     );
   }
 }
-
-
->>>>>>> dc71bafebd4d95ae216dca0be4a0c09e7248ce80
