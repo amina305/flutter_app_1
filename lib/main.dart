@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'Categorie.dart'; // Importer la nouvelle page
-import 'Sport.dart';
-import 'Pause.dart';
-import 'Deficuisine.dart';
-import 'Science.dart';
+import 'categorie.dart'; // Importer la nouvelle page
+import 'sport.dart';
+import 'pause.dart';
+import 'deficuisine.dart';
+import 'science.dart';
 
 void main() {
   runApp(const MyApp());
@@ -96,7 +96,12 @@ class ProfilState extends State<Profil> {
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(
+                              alpha: 25, // 10% of 255
+                              red:   0,
+                              green: 0,
+                              blue:  0,
+                            ),
                             blurRadius: 2,
                             offset: const Offset(0, 1),
                           ),

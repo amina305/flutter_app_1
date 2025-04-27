@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart'; // ✅ Assure-toi que le fichier est bien dans "lib/" ou adapte le chemin
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 import 'screen_two.dart';
 import 'package:premier_projet/categorier.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:premier_projet/cuisine.dart';
+void main() {
+  runApp(const MaterialApp(
+    home: ChallengeCompletedPage2(),
+  ));
+}
 
 class ChallengeCompletedPage2 extends StatefulWidget {
   const ChallengeCompletedPage2({super.key});
@@ -48,9 +53,9 @@ class ChallengeScreen extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.3,
                 width: screenWidth * 0.8,
-                child: Image.network(
-                  "https://storage.googleapis.com/tagjs-prod.appspot.com/qGoJPkUONC/5zmgz3i0.png",
-                  fit: BoxFit.contain,
+                child: Image.asset(
+                  'assets/logo.png',
+                  fit: BoxFit.cover,
                 ),
               ),
               Padding(

@@ -53,7 +53,7 @@ class PageUnique extends StatelessWidget {
               const SizedBox(height: 40),
 
               // --- Section 3 (sans header) ---
-               Text(
+              Text(
                 "Conseils",
                 style: TextStyle(
                   color: Color(0xFF1DA55C),
@@ -69,14 +69,13 @@ class PageUnique extends StatelessWidget {
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text("Next"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey[300],
                     foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                   ),
+                  onPressed: () {},
+                  child: const Text("Next"), // `child` reste en dernier
                 ),
               ),
 
@@ -117,9 +116,9 @@ class HeaderRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(Icons.chevron_left,size: 32,),
+        const Icon(Icons.chevron_left, size: 32),
         Image.asset(
-         'assets/icons/Frame 13.png' ,
+          'assets/icons/Frame 13.png',
           height: 40,
         ),
       ],
@@ -139,14 +138,14 @@ class BulletText extends StatelessWidget {
       children: [
         const Text(
           "🔴 ",
-          style: TextStyle(fontSize:14),
+          style: TextStyle(fontSize: 14),
         ),
         Expanded(
           child: Text(
             text,
             style: const TextStyle(fontSize: 16),
           ),
-        )
+        ),
       ],
     );
   }

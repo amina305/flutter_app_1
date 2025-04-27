@@ -6,13 +6,12 @@ class RestPage extends StatefulWidget {
   final VoidCallback onRestEnd;
   final AudioPlayer audioPlayer;
 
-  const RestPage({Key? key, required this.onRestEnd, required this.audioPlayer}) : super(key: key);
-
+  const RestPage({super.key, required this.onRestEnd, required this.audioPlayer});
   @override
-  _RestPageState createState() => _RestPageState();
+  RestPageState createState() => RestPageState();
 }
 
-class _RestPageState extends State<RestPage> {
+class RestPageState extends State<RestPage> {
   int restTime = 25;
   late Timer timer;
 
@@ -79,7 +78,12 @@ class _RestPageState extends State<RestPage> {
 
           // 🔹 Couche semi-transparente
           Container(
-            color: Color(0xFFC0B6FF).withOpacity(0.75), // ✅ Légèrement plus foncé pour un effet premium
+            color: const Color(0xFFC0B6FF).withValues(
+              alpha: 191, // 0.75 * 255 ≃ 191
+              red:   192,
+              green: 182,
+              blue: 255,
+            ), // ✅ Légèrement plus foncé pour un effet premium
           ),
 
           // 🔹 Contenu principal
@@ -97,7 +101,13 @@ class _RestPageState extends State<RestPage> {
                     letterSpacing: 1.5, // 🔹 Espacement pour un rendu plus aéré
                     shadows: [
                       Shadow(
-                        color: Colors.black.withOpacity(0.3), // ✅ Ombre subtile
+                        color: Colors.black.withValues(
+                          alpha: 77,  // 30% of 255 ≃ 77
+                          red:   0,
+                          green: 0,
+                          blue:  0,
+                        ),
+                        // ✅ Ombre subtile
                         blurRadius: 8,
                         offset: Offset(2, 2),
                       ),
@@ -116,7 +126,12 @@ class _RestPageState extends State<RestPage> {
                     letterSpacing: 1.2,
                     shadows: [
                       Shadow(
-                        color: Colors.black.withOpacity(0.3), // ✅ Effet d'ombre subtil
+                        color: Colors.black.withValues(
+                          alpha: 77,  // 30% of 255 ≃ 77
+                          red:   0,
+                          green: 0,
+                          blue:  0,
+                        ), // ✅ Effet d'ombre subtil
                         blurRadius: 10,
                         offset: Offset(2, 2),
                       ),
@@ -131,7 +146,13 @@ class _RestPageState extends State<RestPage> {
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.92),
+                        backgroundColor: Colors.white.withValues(
+                          alpha: 235,  // 0.92 * 255 ≃ 235
+                          red:   255,
+                          green: 255,
+                          blue:  255,
+                        ),
+
                         foregroundColor: Colors.black,
                         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 14), // ✅ Taille optimisée
                         textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -144,7 +165,13 @@ class _RestPageState extends State<RestPage> {
                     SizedBox(width: 25), // ✅ Meilleur espacement entre les boutons
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent.withOpacity(0.92),
+                        backgroundColor: Colors.redAccent.withValues(
+                          alpha: 235,  // 0.92 * 255 ≃ 235
+                          red:   255,
+                          green: 82,
+                          blue:  82,
+                        ),
+
                         foregroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 14),
                         textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

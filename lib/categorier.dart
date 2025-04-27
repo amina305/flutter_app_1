@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
-//sport pause
+
+// sport pause
 class RestPage extends StatefulWidget {
   final VoidCallback onRestEnd;
   final AudioPlayer audioPlayer;
 
-  const RestPage({Key? key, required this.onRestEnd, required this.audioPlayer}) : super(key: key);
+  const RestPage({super.key, required this.onRestEnd, required this.audioPlayer});
 
   @override
-  _RestPageState createState() => _RestPageState();
+  RestPageState createState() => RestPageState();
 }
 
-class _RestPageState extends State<RestPage> {
+class RestPageState extends State<RestPage> {
   int restTime = 25;
   late Timer timer;
 
@@ -79,7 +80,7 @@ class _RestPageState extends State<RestPage> {
 
           // 🔹 Couche semi-transparente
           Container(
-            color: Color(0xFFC0B6FF).withOpacity(0.75), // ✅ Légèrement plus foncé pour un effet premium
+            color: Color(0xBFC0B6FF), // ✅ couleur avec 75% d'opacité
           ),
 
           // 🔹 Contenu principal
@@ -87,64 +88,60 @@ class _RestPageState extends State<RestPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // ✅ Effet plus élégant et bold sur "Repos"
                 Text(
                   "Repos",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 45, // 🔹 Légèrement plus grand
-                    fontWeight: FontWeight.w900, // 🔹 Ultra bold pour un effet premium
-                    letterSpacing: 1.5, // 🔹 Espacement pour un rendu plus aéré
+                    fontSize: 45,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.5,
                     shadows: [
                       Shadow(
-                        color: Colors.black.withOpacity(0.3), // ✅ Ombre subtile
+                        color: Colors.black.withValues(alpha: 76.5),
                         blurRadius: 8,
                         offset: Offset(2, 2),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 15), // ✅ Espacement amélioré
-
-                // ✅ Effet amélioré sur le temps
+                SizedBox(height: 15),
                 Text(
                   "00:${restTime.toString().padLeft(2, '0')}",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 48, // 🔹 Un peu plus petit pour un meilleur équilibre
+                    fontSize: 48,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.2,
                     shadows: [
                       Shadow(
-                        color: Colors.black.withOpacity(0.3), // ✅ Effet d'ombre subtil
+                        color: Colors.black.withValues(alpha: 76.5),
+
                         blurRadius: 10,
                         offset: Offset(2, 2),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 30), // ✅ Espacement équilibré
-
-                // ✅ Boutons avec plus d'espace et un effet premium
+                SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.92),
+                        backgroundColor: Color(0xEBFFFFFF), // ✅ blanc avec 92% opacité
                         foregroundColor: Colors.black,
-                        padding: EdgeInsets.symmetric(horizontal: 22, vertical: 14), // ✅ Taille optimisée
+                        padding: EdgeInsets.symmetric(horizontal: 22, vertical: 14),
                         textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                        elevation: 5, // ✅ Effet d'ombre pour un look premium
+                        elevation: 5,
                       ),
                       onPressed: addTime,
                       child: Text("+20s"),
                     ),
-                    SizedBox(width: 25), // ✅ Meilleur espacement entre les boutons
+                    SizedBox(width: 25),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent.withOpacity(0.92),
+                        backgroundColor: Colors.redAccent.withAlpha(235), // ✅ 92% opacité
                         foregroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 14),
                         textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

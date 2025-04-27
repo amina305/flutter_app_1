@@ -58,8 +58,7 @@ class Page6State extends State<Page6> {
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: NetworkImage(
-                                              "https://storage.googleapis.com/tagjs-prod.appspot.com/qGoJPkUONC/rin12vu2.png"),
+                                          image: AssetImage("assets/image/Group 443.png"),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -84,16 +83,21 @@ class Page6State extends State<Page6> {
                                                 height: 40,
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
-                                                  color:
-                                                  Colors.white.withOpacity(0.8),
+                                                  color: Colors.white.withValues(
+                                                  alpha: 204, // 0.8 * 255 ≃ 204
+                                                  red:   255,
+                                                  green: 255,
+                                                  blue:  255,
+                                                ),
                                                 ),
                                                 child: Center(
-                                                  child: Image.network(
-                                                    "https://storage.googleapis.com/tagjs-prod.appspot.com/qGoJPkUONC/dvinb1mg.png",
+                                                  child: Image.asset(
+                                                    "assets/image/Group 443.png", // Remplace par le chemin de ton image locale
                                                     width: 25,
                                                     height: 25,
                                                   ),
                                                 ),
+
                                               ),
                                             ],
                                           ),
@@ -159,7 +163,7 @@ class Page6State extends State<Page6> {
                                                     ),
                                                   ),
                                                   if (index == 3 || index == 7)
-                                                    Container(
+                                                    SizedBox(
                                                       width: 20,
                                                       height: 20,
                                                       child: Image.network(
@@ -238,6 +242,7 @@ class Page6State extends State<Page6> {
 }
 
 class RestDayPage extends StatelessWidget {
+  const RestDayPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

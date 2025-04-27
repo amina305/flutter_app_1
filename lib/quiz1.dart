@@ -18,15 +18,15 @@ class ChallengeQuiz extends StatefulWidget {
   const ChallengeQuiz({super.key});
 
   @override
-  _ChallengeQuizState createState() => _ChallengeQuizState();
+  ChallengeQuizState createState() => ChallengeQuizState();
 }
 
-class _ChallengeQuizState extends State<ChallengeQuiz> {
+class ChallengeQuizState extends State<ChallengeQuiz> {
   int _selectedIndex = 0; // Variable to track the selected index
 
   @override
   Widget build(BuildContext context) {
-    const Color greenColor = Color(0xFF92D3B0);
+    //const Color greenColor = Color(0xFF92D3B0);
     const Color quizTitleColor = Color(0xFF1DA55C); // Couleur pour le titre
 
     return Scaffold(

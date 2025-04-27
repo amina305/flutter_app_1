@@ -39,7 +39,9 @@ dependencies:
   shared_preferences: ^2.2.2
   audioplayers: ^6.4.0
   lottie: ^3.3.1
+  url_launcher: ^6.0.9
   percent_indicator: ^4.2.2
+
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/image/Group 443.png
     - assets/image/image1.png
     - assets/music.mp3
     - assets/image/background.png
@@ -86,6 +89,43 @@ flutter:
     - assets/toast.png
     - assets/yoga.png
     - assets/animation.json
+    - assets/icons/Frame.png
+    - assets/images/artist_807842.png
+    - assets/icons/mail.png
+    - assets/icons/lock - 24px.png
+    - assets/icons/galerie 1.png
+    - assets/icons/home.png
+    - assets/icons/profile.png
+    - assets/icons/notif.png
+    - assets/animation/ex1.png
+    - assets/animation/ex2.png
+    - assets/lottie/jumping.png
+    - assets/lottie/fente.json
+    - assets/lottie/pompe.json
+    - assets/lottie/fente2.json
+    - assets/lottie/burpees.json
+    - assets/lottie/jumping.json
+    - assets/lottie/abd.json
+    - assets/audio/nu-metal-with-solo-109316.mp3
+    - assets/audio/remember-312028.mp3
+    - assets/audio/running-day-156114.mp3
+    - assets/audio/sport-rock-trailer-314909.mp3
+    - assets/audio/workout-metal-sport-11962.mp3
+    - assets/son/achive-sound-132273.mp3
+    - assets/son/ticking-clock-sound-effect-1-mp3-edition-264451.mp3
+    - assets/ingrediants/469b8e2e-cb74-41cc-98e2-7c29d39c1736 2.png
+    - assets/ingrediants/Courgettes au jambon 1.png
+    - assets/ingrediants/Crème fraîche __ Crème liquide __  Comment faire la crème fraîche à la maison 1.png
+    - assets/ingrediants/Découvrez le trésor culinaire de la Grèce en un… 1.png
+    - assets/ingrediants/Pasta Mezze Penne 28 1.png
+    - assets/ingrediants/patte1.jpg
+    - assets/ingrediants/Quiche au thon sans pâte 1.png
+    - assets/ingrediants/Sauce tomate à l’origan 1.png
+    - assets/ingrediants/Tout savoir sur le poivre 1.png
+    - assets/ingrediants/Nudelgerichte, Pasta, Food Art, Glanzbild, Victorian die cut scrap, Tube victorienne 2.png
+    - assets/ingrediants/patteeee.jpg
+    - assets/ingrediants/aiil 1.png
+    - assets/icons/Frame 13.png
   # To add assets to your application, add an assets section, like this:
 
   # An image asset can refer to one or more resolution-specific "variants", see
