@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'obj_scentifique.dart';
+import 'categorie.dart';// Assurez-vous que l'importation est correcte
 
 class Science extends StatelessWidget {
   const Science({super.key});
@@ -19,7 +21,10 @@ class Science extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  Categorie()),
+                      );
                     },
                   ),
                   ClipRRect(
@@ -60,36 +65,53 @@ class Science extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Barre 1
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF92D3B0),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const TextField(
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'La médecine',
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
+                    // Barre 1 : La médecine avec GestureDetector
+                    // Pour "La médecine"
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ScienceStatePage(),
                           ),
-                          suffixIcon: Icon(
-                            Icons.medical_services_outlined,
-                            size: 40,
-                            color: Colors.black,
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF92D3B0),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'La médecine',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 34,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Icon(
+                                Icons.medical_services_outlined,
+                                size: 40,
+                                color: Colors.black,
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
+
 
                     const SizedBox(height: 30),
 
                     // Barre 2
+                    // Pour "La physique"
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -97,24 +119,29 @@ class Science extends StatelessWidget {
                         color: const Color(0xFF92D3B0),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const TextField(
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'La physique',
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          suffixIcon: Icon(
-                            Icons.science_outlined,
-                            size: 40,
-                            color: Colors.black,
-                          ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'La physique',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 34,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.science_outlined,
+                              size: 40,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
                       ),
                     ),
+
 
                     const SizedBox(height: 40),
 
@@ -153,8 +180,6 @@ class Science extends StatelessWidget {
           ],
         ),
       ),
-
-      // ✅ Barre de navigation en bas
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         items: const [

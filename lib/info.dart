@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'obj_scentifique.dart';
+import 'quiz1.dart';
 void main() => runApp(const MonApp());
 
 class MonApp extends StatelessWidget {
@@ -74,7 +75,13 @@ class PageUnique extends StatelessWidget {
                     foregroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigation vers QuizApp
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const QuizApp()),
+                    );
+                  },
                   child: const Text("Next"), // `child` reste en dernier
                 ),
               ),
@@ -116,7 +123,15 @@ class HeaderRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(Icons.chevron_left, size: 32),
+        IconButton(
+          icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>   ScienceStatePage()),
+            );
+          },
+        ),
         Image.asset(
           'assets/icons/Frame 13.png',
           height: 40,

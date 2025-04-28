@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'info.dart'; // N'oublie pas d'importer la nouvelle page
 
 void main() => runApp(const QuizApp());
 
@@ -26,7 +27,6 @@ class ChallengeQuizState extends State<ChallengeQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    //const Color greenColor = Color(0xFF92D3B0);
     const Color quizTitleColor = Color(0xFF1DA55C); // Couleur pour le titre
 
     return Scaffold(
@@ -41,7 +41,16 @@ class ChallengeQuizState extends State<ChallengeQuiz> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(Icons.arrow_back, size: 28),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back, size: 28),
+                    onPressed: () {
+                      // Navigation vers NouvellePage
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MonApp()),
+                      );
+                    },
+                  ),
                   SizedBox(
                     height: 60,
                     width: 60,
