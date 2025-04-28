@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'categorie.dart'; // Importer la nouvelle page
-import 'sport.dart';
-import 'pause.dart';
-import 'deficuisine.dart';
-import 'science.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Votre Application',
       debugShowCheckedModeBanner: false,
-      home: const ChallengeCompletedPage2(),
+      home: const MyApp(),
     );
   }
 }
@@ -168,7 +164,7 @@ class ProfilState extends State<Profil> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ChallengeCompletedPage2()),
+                    MaterialPageRoute(builder: (context) => const MyApp()),
                   );
                 },
                 icon: const Icon(Icons.arrow_forward),
