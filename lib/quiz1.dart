@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'info.dart'; // N'oublie pas d'importer la nouvelle page
 
-void main() => runApp(const QuizApp());
-
-class QuizApp extends StatelessWidget {
+class QuizApp extends StatefulWidget {
   const QuizApp({super.key});
 
   @override
+  QuizAppState createState() => QuizAppState();
+}
+
+class QuizAppState extends State<QuizApp> {
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ChallengeQuiz(),
-    );
+    return const ChallengeQuiz(); // Affiche le quiz
   }
 }
 
@@ -19,11 +18,21 @@ class ChallengeQuiz extends StatefulWidget {
   const ChallengeQuiz({super.key});
 
   @override
-  ChallengeQuizState createState() => ChallengeQuizState();
+  _ChallengeQuizState createState() => _ChallengeQuizState();
 }
 
-class ChallengeQuizState extends State<ChallengeQuiz> {
-  int _selectedIndex = 0; // Variable to track the selected index
+class _ChallengeQuizState extends State<ChallengeQuiz> {
+  int _selectedIndex = 0; // Variable pour suivre l'index sélectionné
+  String? _feedbackMessage; // Message de feedback (bravo ou triste)
+  Color _buttonColor = const Color(0xFF92D3B0); // Couleur par défaut des boutons
+
+  // Liste des options et la bonne réponse
+  final List<String> _options = [
+    'Filtrer le sang',
+    'Pomper le sang dans \ntout le corps',
+    'Produire des globules rouges'
+  ];
+  final String _correctAnswer = 'Pomper le sang dans \ntout le corps';
 
   @override
   Widget build(BuildContext context) {
@@ -37,20 +46,11 @@ class ChallengeQuizState extends State<ChallengeQuiz> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Top bar: back button + image
+              // Top bar : bouton retour + image
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, size: 28),
-                    onPressed: () {
-                      // Navigation vers NouvellePage
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MonApp()),
-                      );
-                    },
-                  ),
+                  const Icon(Icons.arrow_back, size: 28),
                   SizedBox(
                     height: 60,
                     width: 60,
@@ -63,7 +63,7 @@ class ChallengeQuizState extends State<ChallengeQuiz> {
               ),
               const SizedBox(height: 24),
 
-              // Title with new color
+              // Titre avec nouvelle couleur
               Text(
                 'QUIZ 1',
                 style: TextStyle(
@@ -85,47 +85,65 @@ class ChallengeQuizState extends State<ChallengeQuiz> {
               ),
               const SizedBox(height: 32),
 
-              // Answer buttons centered
-              Center(child: QuizOption(text: 'Filtrer le sang')),
-              Center(child: QuizOption(text: 'Pomper le sang dans \ntout le corps')),
-              Center(child: QuizOption(text: 'Produire des globules rouges')),
+              // Boutons de réponse
+              Column(
+                children: _options.map((option) {
+                  return QuizOption(
+                    text: option,
+                    onPressed: () {
+                      _checkAnswer(option);
+                    },
+                    buttonColor: option == _correctAnswer
+                        ? Colors.green
+                        : (_feedbackMessage != null && option != _correctAnswer)
+                        ? Colors.red
+                        : _buttonColor,
+                  );
+                }).toList(),
+              ),
+
+              // Message de feedback
+              if (_feedbackMessage != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    _feedbackMessage!,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: _feedbackMessage == 'Bravo!' ? Colors.green : Colors.red,
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
       ),
-
-      // Bottom Navigation with original style
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Accueil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.photo),
-            label: 'Photos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Moi',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue, // Couleur de l'élément sélectionné
-        unselectedItemColor: Colors.grey, // Couleur de l'élément non sélectionné
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index; // Met à jour l'index sélectionné
-          });
-        },
-      ),
     );
+  }
+
+  // Méthode pour vérifier la réponse
+  void _checkAnswer(String selectedOption) {
+    setState(() {
+      if (selectedOption == _correctAnswer) {
+        _feedbackMessage = 'Bravo!';
+      } else {
+        _feedbackMessage = 'Triste... Ce n\'est pas la bonne réponse.';
+      }
+    });
   }
 }
 
 class QuizOption extends StatelessWidget {
   final String text;
-  const QuizOption({super.key, required this.text});
+  final void Function() onPressed;
+  final Color buttonColor;
+
+  const QuizOption({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    required this.buttonColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -135,10 +153,10 @@ class QuizOption extends StatelessWidget {
         width: 263,
         height: 80,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.black,
-            backgroundColor: const Color(0xFF92D3B0),
+            backgroundColor: buttonColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18),
             ),

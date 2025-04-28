@@ -42,7 +42,6 @@ dependencies:
   url_launcher: ^6.0.9
   percent_indicator: ^4.2.2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -127,7 +126,15 @@ flutter:
     - assets/ingrediants/Nudelgerichte, Pasta, Food Art, Glanzbild, Victorian die cut scrap, Tube victorienne 2.png
     - assets/ingrediants/patteeee.jpg
     - assets/ingrediants/aiil 1.png
-    - assets/icons/Frame 13.png
+    - assets/icons/Frame13.png
+    - assets/image/yogaderopos.png
+    - assets/image/calendar.png
+    - assets/image/background.png
+    - assets/image/image2.png
+    - assets/image/image3.png
+    - assets/image/image1.png
+    - assets/music.mp3
+
   # To add assets to your application, add an assets section, like this:
 
   # An image asset can refer to one or more resolution-specific "variants", see

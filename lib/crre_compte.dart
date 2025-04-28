@@ -23,26 +23,9 @@ class _CreerCompteState extends State<CreerCompte> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: Image.network(
-                "https://storage.googleapis.com/tagjs-prod.appspot.com/qGoJPkUONC/e9zuvxdb.png",
+              child: Image.asset(
+                'assets/image/image3.png', // Ton image ajoutée ici
                 fit: BoxFit.cover,
-              ),
-            ),
-            Positioned(
-              top: 20,
-              left: 10,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  "<",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
               ),
             ),
             Center(

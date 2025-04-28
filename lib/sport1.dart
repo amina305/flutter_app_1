@@ -9,14 +9,13 @@ class Page6 extends StatefulWidget {
 
 class Page6State extends State<Page6> {
   int _selectedIndex = 0;
-  int currentDaySport = 1; // Jour du défi Sport
-  int scoreSport = 0; // Score du défi Sport
+  int currentDaySport = 1;
+  int scoreSport = 0;
 
-  // Fonction pour recommencer seulement le défi Sport
   void restartSportChallenge() {
     setState(() {
-      currentDaySport = 1; // Remet les jours de Sport à 1
-      scoreSport = 0; // Réinitialise le score de Sport
+      currentDaySport = 1;
+      scoreSport = 0;
     });
   }
 
@@ -58,17 +57,15 @@ class Page6State extends State<Page6> {
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: AssetImage("assets/image/Group 443.png"),
+                                          image: AssetImage('assets/image/image2.png'),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
                                       child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "See All",
@@ -83,21 +80,15 @@ class Page6State extends State<Page6> {
                                                 height: 40,
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
-                                                  color: Colors.white.withValues(
-                                                  alpha: 204, // 0.8 * 255 ≃ 204
-                                                  red:   255,
-                                                  green: 255,
-                                                  blue:  255,
-                                                ),
+                                                  color: Colors.white.withOpacity(0.8),
                                                 ),
                                                 child: Center(
                                                   child: Image.asset(
-                                                    "assets/image/Group 443.png", // Remplace par le chemin de ton image locale
+                                                    "assets/image/calendar.png",
                                                     width: 25,
                                                     height: 25,
                                                   ),
                                                 ),
-
                                               ),
                                             ],
                                           ),
@@ -115,8 +106,7 @@ class Page6State extends State<Page6> {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        RestDayPage(),
+                                                    builder: (context) => RestDayPage(),
                                                   ),
                                                 );
                                               }
@@ -124,50 +114,43 @@ class Page6State extends State<Page6> {
                                             child: Container(
                                               width: screenWidth * 0.85,
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(15),
+                                                borderRadius: BorderRadius.circular(15),
                                                 color: Color(0xFFF3F1FF),
                                               ),
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 12, horizontal: 20),
-                                              margin: EdgeInsets.only(
-                                                  bottom: screenHeight * 0.01),
+                                              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                                              margin: EdgeInsets.only(bottom: screenHeight * 0.01),
                                               child: Row(
                                                 children: [
                                                   Expanded(
                                                     child: Column(
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Text(
                                                           "Jour ${index + 1}",
                                                           style: TextStyle(
                                                             color: Colors.black,
                                                             fontSize: 22,
-                                                            fontWeight:
-                                                            FontWeight.bold,
+                                                            fontWeight: FontWeight.bold,
                                                           ),
                                                         ),
                                                         Text(
-                                                          (index == 3 || index == 7)
-                                                              ? "Repos"
-                                                              : "x4 exercice",
+                                                          (index == 3 || index == 7) ? "Repos" : "x4 exercice",
                                                           style: TextStyle(
                                                             color: Color(0xFF6D6E70),
                                                             fontSize: 14,
-                                                            fontWeight:
-                                                            FontWeight.w500,
+                                                            fontWeight: FontWeight.w500,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
+                                                  // Ici tu utilises l'image yoga.png pour les jours de repos
                                                   if (index == 3 || index == 7)
-                                                    SizedBox(
+                                                    Container(
                                                       width: 20,
                                                       height: 20,
-                                                      child: Image.network(
-                                                        "https://storage.googleapis.com/tagjs-prod.appspot.com/qGoJPkUONC/94mhh1c1.png",
+                                                      child: Image.asset(
+                                                        "assets/image/yogaderopos.png", // Image utilisée ici
                                                         fit: BoxFit.fill,
                                                       ),
                                                     ),
@@ -197,8 +180,7 @@ class Page6State extends State<Page6> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                               elevation: 2,
                             ),
                           ),
@@ -242,7 +224,6 @@ class Page6State extends State<Page6> {
 }
 
 class RestDayPage extends StatelessWidget {
-  const RestDayPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
