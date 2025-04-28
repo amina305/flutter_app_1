@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Votre Application',
       debugShowCheckedModeBanner: false,
-      home: const Profil(),
+      home: const ChallengeCompletedPage2(),
     );
   }
 }
@@ -168,7 +168,7 @@ class ProfilState extends State<Profil> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Categorie()),
+                    MaterialPageRoute(builder: (context) => const ChallengeCompletedPage2()),
                   );
                 },
                 icon: const Icon(Icons.arrow_forward),
