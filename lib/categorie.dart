@@ -58,6 +58,7 @@ class CategorieState extends State<Categorie> {
                 _buildCategorieButton(
                   color: const Color(0xFFC0B6FF),
                   imageUrl: "assets/yoga.png",
+                  //jj
                   text: "Sport",
                   onTap: () {
                     Navigator.push(
